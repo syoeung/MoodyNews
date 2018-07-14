@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- JQuery Full CDN -->
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js" 
+        integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" 
+        crossorigin="anonymous"></script>
+    <!-- Bootstrap CSS CDN -->
+    <link rel="stylesheet" 
+        href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" 
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" 
+        crossorigin="anonymous">
+    <!-- Bootstrap Popper.js CDN -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" 
+        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" 
+        crossorigin="anonymous"></script>
+    <!-- Boostrap JS -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" 
+        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" 
+        crossorigin="anonymous"></script>
+    <!-- Firebase -->
+    <script src="https://www.gstatic.com/firebasejs/5.1.0/firebase.js"></script>
+    <!-- Google Fonts ( change to desired font(s) ) -->
+    <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
+    <!-- Local CSS -->
+    <link rel="stylesheet" type="text/css" media="screen" href="./assets/css/style.css" />
+    <!-- Local Credentials -->
+    <script src="./assets/js/config.js"></script>
+
+    <!-- Go nuts -->
+    <title>New Project</title>
+</head>
+<body>
+     <!-- Navigation -->
+     <nav class="navbar navbar-expand-lg navbar-dark bg-dark static-top">
+            <div class="container">
+              <a class="navbar-brand" href="index.html">
+                <h1> <strong><i class="fa fa-newspaper-o"></i> Moody News</strong> </h1>
+              </a>
+              <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+              </button>
+              <div class="collapse navbar-collapse" id="navbarResponsive">
+                <ul class="navbar-nav ml-auto">
+                  <li class="nav-item active">
+                    <a class="nav-link" href="index.html">Home
+                      <span class="sr-only">(current)</span>
+                    </a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="about.html">About Us</a>
+                  </li>
+                  
+                </ul>
+              </div>
+            </div>
+          </nav>
+          <br>
+    <!-- Main Bootstrap Search -->
+   <!-- Main Bootstrap Search -->
+   <div class="container">
+        <!-- Jumbotron for Title -->
+        <div class="jumbotron bg-dark" style="color: white;">
+            <h1 class="text-center"><strong><i class="fa fa-newspaper-o"></i> The Moody News</strong></h1>
+            <form role="form">
+                <!-- Here we create the text box for capturing the search term-->
+                <div class="form-group">
+                    <label for="search">Search Topic:</label>
+                <input type="text" class="form-control" id="search-term">
+                </div>
+                <!-- Here we have our final submit button -->
+                <button type="submit" class="btn btn-primary" id="run-search">
+                    <i class="fa fa-search"></i> Search</button>
+                <button class="btn btn-primary" id="clear-all">
+                    <i class="fa fa-trash"></i> Clear Results</button>
+            </form>
+            <strong><div id="date">
+              </div></strong>
+        </div>
+        
+        <!-- This row will handle all of the retrieved average sentiment scores  -->
+        <div class="row">
+            <div class="col-sm-12">
+                <br>
+                
+                <div class="card">
+                    <!-- Panel Heading for the retrieved articles box -->
+                   <div class="card-header"><strong><i class="fa fa-table"></i> Sentiment Analysis</strong></div>
+                    <!-- This main panel will hold each of the resulting articles -->
+                    <div class="card-body" id="article-section"></div>
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>Vice</th>
+                                <th>HuffPost</th>
+                                <th>BBC</th>
+                                <th>CNN</th>
+                                <th>FoxNews</th>
+                                <th>Breitbart</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr id="aggDisplay">
+                                <td id = "vice"></td>
+                                <td id = "huff"></td>
+                                <td id = "bbc"></td>
+                                <td id = "cnn"></td>
+                                <td id = "fox"></td>
+                                <td id = "breit"></td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-6">
+                <br>
+                <div class="card">
+                    <!-- Panel Heading for the retrieved articles box -->
+                   <div class="card-header"><strong><i class="fa fa-table"></i> Highest Sentiment Articles</strong></div>
+                    <!-- This main panel will hold each of the resulting articles -->
+                    <div class="card-body" id="high-article-section"></div>
+                </div>
+            </div>
+            <div class="col-sm-6">
+                <br>
+                <div class="card">
+                    <!-- Panel Heading for the retrieved articles box -->
+                   <div class="card-header"><strong><i class="fa fa-table"></i> Lowest Sentiment Articles</strong></div>
+                    <!-- This main panel will hold each of the resulting articles -->
+                    <div class="card-body" id="low-article-section"></div>
+                </div>
+            </div>
+        </div>
+        <br>
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="card">
+                    <!-- Panel Heading for the retrieved articles box -->
+                <div class="card-header"><strong><i class="fa fa-table"></i> Recent Searches</strong></div>
+                    <!-- This main panel will hold each of the resulting articles -->
+                    <div class="card-body" id="recent-searches"></div>
+                </div>
+            </div>
+        </div>
+        <div class="modal" tabindex="-1" role="dialog" id = "queryModal">
+            <div class="modal-dialog" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title">Give me something</h5>
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+                <div class="modal-body">
+                  <p>Please enter a search term!</p>
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="modal" tabindex="-1" role="dialog" id = "nullModal">
+            <div class="modal-dialog" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title">No Articles Found</h5>
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+                <div class="modal-body">
+                  <p>Try something more relevant!</p>
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                </div>
+              </div>
+            </div>
+          </div>
+    </div>
+    <!-- Load Local Sentimood -->
+    <script src="./assets/js/sentimood.js"></script>
+    <!-- Local JS -->
+    <script src="./assets/js/main.js"></script>
+</body>
+</html>
